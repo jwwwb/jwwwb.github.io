@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Website."
+date:   2016-01-23 23:30:07 +0100
+categories: general
+---
+I have decided to start a website, not necessarily because I expect anybody to read it, but simply because I have found that putting my thoughts on paper helps me think them through.
+
+I guess I will mainly be writing about computer science related topics here, but I could imagine there will be some ventures into statistics, linguistics, acoustics, and music to come. Maybe something else if I come across. something interesting. 
+
+Lately I've pretty much only been programming in Python, it's just so... logical? I do hope I can avoid Matlab in the future, not least because that will free up 10GB on my laptop.
+
+{% highlight python %}
+def hello_world(signature)
+  print 'Hi World! -{}'.format(signature)'
+>>> hello_world('James')
+# prints 'Hi, World! -James' to STDOUT.
+{% endhighlight %}
+
+I will attempt to clean up some of my old code to put on [my GitHub page][jwwwb-gh], or at the very least put new projects I start there.
+
+[jwwwb-gh]:   https://github.com/jwwwb/

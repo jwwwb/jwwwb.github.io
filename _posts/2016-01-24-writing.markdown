@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Writing."
+date:   2016-01-24 18:30:07 +0100
+categories: general
+---
+I do so many things in my life and I always forget about them. I’ve thought several times I should write things down, because you have to think the ideas in your head through and you find out if they actually make sense, or if you’re missing out on something. Over the years I’ve accumulated numerous `documentation.txt` files with half completed instructions in them, strewn over numerous hard drives. Perhaps not everything I write is suitable for publication, but at least trying to write it down will help me weed out the good ideas which I can then upload to the site.
+
+Since switching into a software-related field, I have noticed that there seems to be a trend like in the creative industries, where potential employers want to see your "portfolio," only that here your portfolio is your github page. Now, I'm not convinced that that should be the only reason to publish your work, but it's certainly an added benefit. More importantly I hope that by putting my code out there for the world to see, I will hold myself accountable and try to program cleanly - it's like your mother always telling you to wear clean underwear, because you might be in a car accident and the EMTs will have to cut you out of your pants.
+
+And of course it's rather nice to have my ideas somewhere safe in the internet so I can access them anywhere and anytime, rather than them getting buried in a pile of old hard drives in the cellar. Let's see.
