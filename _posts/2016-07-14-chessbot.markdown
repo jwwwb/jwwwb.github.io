@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Programming a Chess Bot."
-date:   2016-07-14 23:40:07 +0100
+date:   2016-07-14 23:40:07 +0200
 categories: general
 ---
 Sometimes it feels like every project idea I have has already been done. I have a cool idea for a program, and then when I google it, not only has it already been made, there's already a web app for it. In my internship with with web development stuff, I learned that web development has come a long way from 90s era static html, or even simple php generated code like you might find on a website like this. You need to know half a dozen languages and ten frameworks to work on these modern apps with full native functionality that just happen to be contained in a browser tab. Well, that is something I should try to learn better, but that's an issue for a different day.
