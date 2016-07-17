@@ -5,6 +5,7 @@ date:   2016-07-17 23:44:44 +0200
 categories: general
 ---
 Once I got my [chess engine up and running rudimentarily]({% post_url 2016-07-14-chessbot %}) it was time to error check. For that purpose I used [perft][perft-wiki], basically the number of possible moves from a given position on the chessboard, for a given number of half-moves or plies (ie, perft from the start for 2 plies is 20 moves for white * 20 possible responses for black = 400). There are correct numbers for a variety of depths to be found on the internet, so you can simply compare the possibilities from your engine and if they differ, you have an error somewhere. I found a lot of useful information on [Albert Bertilsson's site][albert-page], who implemented a chess engine himself, and had the following advice to offer:
+
 > **Warning:**
 > If you like programming and solving mind games and puzzles **do not** start writing your own chess engine. I was tricked into chess programming in late 2002 and has never found any other programming to be as challenging and funny. Chess programming is like a discease without a cure, I've tried other programming projects but none of them has given me the same intellectual satisfaction. 
 
