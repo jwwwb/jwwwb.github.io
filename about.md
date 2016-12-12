@@ -10,7 +10,8 @@ permalink: /about/
 * 2015-2017 MSc Robotics, Cognition, Intelligence
 * 2007-2014 Dipl (MSc) Electrical Engineering
 * 2007-2012 BSc Electrical Engineering
-[pdf version][/test.pdf]
+
+[pdf version](/test.pdf)
 
 ## Interests
 * NLP
