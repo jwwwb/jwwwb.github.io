@@ -175,7 +175,7 @@ call .append().
 
 So, the main thing to be aware of, is that any assignments in python simply copy the pointer of the value being
 assigned. If you then want to be able to manipulate the two variables separately, make sure that they are a 
-mutable data type ([there's a nice overview on wikipedia][pytypes] [^footnote]). For everything else, copy() and
+mutable data type ([there's a nice overview on wikipedia][pytypes])[^footnote]. For everything else, copy() and
 deepcopy() are your friends. Or you may want to take advantage of the fact that objects are passed by reference,
 to allow shared reading of the same item.
 
@@ -198,8 +198,7 @@ each assignment will point to a new location in memory:
 
 Isn't that something? 
 
-[^footnote]: Another interesting thing I learned when reading this is that there is no precision limit for integers in Python: 
-you can store arbitrarily large values in an int without overflow. Just try it out: num = 2**600; print(num)
+[^footnote]: Another interesting thing I learned when reading this is that there is no precision limit for integers in Python: you can store arbitrarily large values in an int without overflow. Just try it out: num = 2**600; print(num)
 
 
 [pregel]: https://blog.acolyer.org/2015/05/26/pregel-a-system-for-large-scale-graph-processing/
