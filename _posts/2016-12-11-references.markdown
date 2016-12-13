@@ -106,7 +106,7 @@ Encouraged by this success, you might also try to do the same thing with lists:
 [['Hi James.', "It's mom."], ['Hi James.', "It's mom."], ['Hi James.', "It's mom."]]
 {% endhighlight %}
 
-Hmmmmmm.... turns out when you initalize your lists in this way, it just replicates the pointer to
+Hmmmmmm.... turns out when you initialize your lists in this way, it just replicates the pointer to
 the list three times. So all three lists are the same object, changing one changes them all. The quick
 fix for this is to use list comprehension instead of multiplication:
 
@@ -153,11 +153,16 @@ in memory? So what happens if we modify one of them?
 [140373411256016, 140373411256088, 140373411256088, 140373411256088, 140373411256088]
 {% endhighlight %}
 
-Not only did the value of the first entry change, it's location in memory changed also! Python is smart enough
-to know that if you have a lot of pointers pointing at the same integer, it's probably unlikely that you want
-to change all of them when you change the value from one variable. Unfortunately, for appending to lists, it
-doesn't do this (well, actually there's a very good reason for this - copy operations are expensive, and for a
-potentially very long and recursive list, this is not something you want to undertake lightly)
+Not only did the value of the first entry change, it's location in memory changed also! This is because ints
+are (for some reason that I'm not aware of) immutable in Python. So any time you modify an integer in place,
+for example using +=, you're actually computing the result, storing it in a different memory location, and
+reassigning your pointer. The same applies to all other immutable data types, which in Python includes
+strings, integers, floats, and tuples. 
+ 
+Lists however are a mutable datatype in python. That means that modifications to them can (and will) be 
+performed in place. This is actually quite useful - copy operations are expensive, and for a
+potentially very long and recursive list, this is not something you want to have to do every time you
+call .append().
 
 {% highlight python %}
 >>> list_of_lists = [[]] * 5
@@ -169,13 +174,34 @@ potentially very long and recursive list, this is not something you want to unde
 {% endhighlight %}
 
 So, the main thing to be aware of, is that any assignments in python simply copy the pointer of the value being
-assigned. If you then want to be able to manipulate the two variables separately, make sure that they are of a 
-datatype that allows this (like integers, strings, basically anything immutable). For everything else, copy() and
+assigned. If you then want to be able to manipulate the two variables separately, make sure that they are a 
+mutable data type ([there's a nice overview on wikipedia][pytypes] [^footnote]). For everything else, copy() and
 deepcopy() are your friends. Or you may want to take advantage of the fact that objects are passed by reference,
 to allow shared reading of the same item.
 
+What's even crazier about this is the fact that Python has a short list of integer values (between -5 and 256) 
+that are pre-initialized and loaded into memory at runtime and used for any occurrence of this number. So this 
+means that any time during the execution of a python program a variable is assigned the number 150 for example, 
+this will point to the same place in memory. In contrast, for large numbers that haven't been pre-initialized, 
+each assignment will point to a new location in memory:
+
+{% highlight python %}
+>>> id(a)
+140368092865608
+>>> id(b)
+140368092894856
+>>> id(c)
+140368092865608
+>>> id(d)
+140368092895144
+{% endhighlight %}
+
+Isn't that something? 
+
+[^footnote]: Another interesting thing I learned when reading this is that there is no precision limit for integers in Python: 
+you can store arbitrarily large values in an int without overflow. Just try it out: num = 2**600; print(num)
 
 
 [pregel]: https://blog.acolyer.org/2015/05/26/pregel-a-system-for-large-scale-graph-processing/
 [heaton-blog]: http://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/
-
+[pytypes]: https://en.wikipedia.org/wiki/Python_(programming_language)#Typing
