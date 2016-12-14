@@ -58,11 +58,11 @@ How about concatenate a bunch of copies of a string? Just do:
 ```
 
 The human brain has a really good (although perhaps not rigidly defined) idea of what "times" and "equal" 
-mean, namely thing1 == thing2 if they are the same,  and thing1 times 3 equals thing1 + thing1 + thing1. The beauty of
-Python is that everything is an object, and every object can (and probably should) define comparison
-or arithmetic methods. The same goes for collections: the ability to "for item in collection" over just
+mean, namely `thing1` equals `thing2` if they are the same, and `thing1 times 3` is `thing1 + thing1 + thing1`. 
+The beauty of Python is that everything is an object, and every object can (and probably should) define comparison
+or arithmetic methods. The same goes for collections: the ability to `for item in collection` over just
 about any non-atomic data-type is wonderful and makes for really readable code. I've totally forgotten how
-to even write for( int i = 0; i < 10; i++ ) style loops anymore. 
+to even write `for ( int i = 0; i < 10; i++ )` style loops anymore. 
 
 One of the things I do often in Python when I need several distinct, but identically behaved, items (though 
 I'm sure more experienced Python programmers than me could explain to me in what way this is non-pythonic) is create 
@@ -74,7 +74,7 @@ a list of items using multiplication:
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ```
 
-Now whenever some event happens at location i, I can simply increment counters[i] to count that occurrence. 
+Now whenever some event happens at location i, I can simply increment `counters[i]` to count that occurrence. 
 
 ```python
 >>> counters[3] += 1
@@ -121,7 +121,7 @@ fix for this is to use list comprehension instead of multiplication:
 ```
 
 So what happened here? Well, it's not that lists in Python are pointers and ints are not. In fact, really
-everything is a pointer, from the ints to the lists. Using the id() function to reveal the memory address
+everything is a pointer, from the ints to the lists. Using the `id()` function to reveal the memory address
 of variables can be quite enlightening:
 
 ```python
@@ -155,14 +155,14 @@ in memory? So what happens if we modify one of them?
 
 Not only did the value of the first entry change, it's location in memory changed also! This is because ints
 are (for some reason that I'm not aware of) immutable in Python. So any time you modify an integer in place,
-for example using +=, you're actually computing the result, storing it in a different memory location, and
+for example using `+=`, you're actually computing the result, storing it in a different memory location, and
 reassigning your pointer. The same applies to all other immutable data types, which in Python includes
 strings, integers, floats, and tuples. 
  
 Lists however are a mutable datatype in python. That means that modifications to them can (and will) be 
 performed in place. This is actually quite useful - copy operations are expensive, and for a
 potentially very long and recursive list, this is not something you want to have to do every time you
-call .append().
+call `.append()`.
 
 ```python
 >>> list_of_lists = [[]] * 5
@@ -175,8 +175,8 @@ call .append().
 
 So, the main thing to be aware of, is that any assignments in python simply copy the pointer of the value being
 assigned. If you then want to be able to manipulate the two variables separately, make sure that they are a 
-mutable data type ([there's a nice overview on wikipedia][pytypes])[^footnote]. For everything else, copy() and
-deepcopy() are your friends. Or you may want to take advantage of the fact that objects are passed by reference,
+mutable data type ([there's a nice overview on wikipedia][pytypes])[^footnote]. For everything else, `copy()` and
+`deepcopy()` are your friends. Or you may want to take advantage of the fact that objects are passed by reference,
 to allow shared reading of the same item.
 
 What's even crazier about this is the fact that Python has a short list of integer values (between -5 and 256) 
