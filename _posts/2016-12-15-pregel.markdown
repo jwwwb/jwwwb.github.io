@@ -27,7 +27,8 @@ may enqueue any number of messages to be sent to other nodes, however due to the
 of the execution, these messages will only be available to their target nodes at the next superstep.
 
 ![Schematic of a very small Pregel network. Multiple workers can run on the same machine for better load balancing.](/images/pregel_network.png)
-*Schematic of a small Pregel Network.*
+
+*Schematic of a small Pregel Network. Multiple workers can run on the same machine for better load balancing.*
 
 Pregel is written in C++ and contains all the necessary code to distribute data across different
 workers, monitor worker health and roll back to backups when necessary, facilitate communication,

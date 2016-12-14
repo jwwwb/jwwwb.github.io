@@ -186,6 +186,10 @@ this will point to the same place in memory. In contrast, for large numbers that
 each assignment will point to a new location in memory:
 
 {% highlight python %}
+>>> a = 150
+>>> b = 300
+>>> c = 150
+>>> d = 300
 >>> id(a)
 140368092865608
 >>> id(b)
