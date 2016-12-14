@@ -36,26 +36,26 @@ of the fact that this could be an issue at all.
 
 One of the things I love about Python is the overloading of operators and functions that lets you 
 write code in a way that makes intuitive sense to a human. Do you want to know if two strings are
-the same? Don't mess around with strcmp(), just type:
+the same? Don't mess around with `strcmp()`, just type:
 
-{% highlight python %}
+```python
 >>> 'word' == 'word'
 True
-{% endhighlight %}
+```
 
 Want to concatenate strings together? Easy:
 
-{% highlight python %}
+```python
 >>> 'word' + 'play'
 'wordplay'
-{% endhighlight %}
+```
 
 How about concatenate a bunch of copies of a string? Just do:
 
-{% highlight python %}
+```python
 >>> 'bla' * 5
 'blablablablabla'
-{% endhighlight %}
+```
 
 The human brain has a really good (although perhaps not rigidly defined) idea of what "times" and "equal" 
 mean, namely thing1 == thing2 if they are the same,  and thing1 times 3 equals thing1 + thing1 + thing1. The beauty of
@@ -68,35 +68,35 @@ One of the things I do often in Python when I need several distinct, but identic
 I'm sure more experienced Python programmers than me could explain to me in what way this is non-pythonic) is create 
 a list of items using multiplication:
  
-{% highlight python %}
+```python
 >>> counters = [0]*10
 >>> counters
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-{% endhighlight %}
+```
 
 Now whenever some event happens at location i, I can simply increment counters[i] to count that occurrence. 
 
-{% highlight python %}
+```python
 >>> counters[3] += 1
 >>> counters[5] += 8
 >>> counters
 [0, 0, 0, 1, 0, 8, 0, 0, 0, 0]
-{% endhighlight %}
+```
 
 Wonderful. No reason why these have to be integers, I can just as easily use strings:
 
-{% highlight python %}
+```python
 >>> morse_decoders = ['']*3
 >>> morse_decoders
 ['', '', '']
 >>> morse_decoders[1] += 'SOS'
 >>> morse_decoders
 ['', 'SOS', '']
-{% endhighlight %}
+```
 
 Encouraged by this success, you might also try to do the same thing with lists:
 
-{% highlight python %}
+```python
 >>> incoming_messages = [[]]*3
 >>> incoming_messages
 [[], [], []]
@@ -104,13 +104,13 @@ Encouraged by this success, you might also try to do the same thing with lists:
 >>> incoming_messages[1].append("It's mom.")
 >>> incoming_messages
 [['Hi James.', "It's mom."], ['Hi James.', "It's mom."], ['Hi James.', "It's mom."]]
-{% endhighlight %}
+```
 
 Hmmmmmm.... turns out when you initialize your lists in this way, it just replicates the pointer to
 the list three times. So all three lists are the same object, changing one changes them all. The quick
 fix for this is to use list comprehension instead of multiplication:
 
-{% highlight python %}
+```python
 >>> incoming_messages = [[] for _ in range(3)]
 >>> incoming_messages
 [[], [], []]
@@ -118,40 +118,40 @@ fix for this is to use list comprehension instead of multiplication:
 >>> incoming_messages[1].append("It's mom.")
 >>> incoming_messages
 [[], ['Hi James.', "It's mom."], []]
-{% endhighlight %}
+```
 
 So what happened here? Well, it's not that lists in Python are pointers and ints are not. In fact, really
 everything is a pointer, from the ints to the lists. Using the id() function to reveal the memory address
 of variables can be quite enlightening:
 
-{% highlight python %}
+```python
 >>> list_of_ints = range(5)
 >>> list_of_ints
 [0, 1, 2, 3, 4]
 >>> [id(value) for value in list_of_ints]
 [140373411256208, 140373411256184, 140373411256160, 140373411256136, 140373411256112]
-{% endhighlight %}
+```
 
 Five different values, five different locations in memory. So far so good. How about this one:
 
-{% highlight python %}
+```python
 >>> list_of_ints = [5, 5, 5, 5, 5]
 >>> list_of_ints
 [5, 5, 5, 5, 5]
 >>> [id(value) for value in list_of_ints]
 [140373411256088, 140373411256088, 140373411256088, 140373411256088, 140373411256088]
-{% endhighlight %}
+```
 
 Wait, what? All of these fives, which were initialized separately from each other, are all at the same location 
 in memory? So what happens if we modify one of them?
 
-{% highlight python %}
+```python
 >>> list_of_ints[0] += 3
 >>> list_of_ints
 [8, 5, 5, 5, 5]
 >>> [id(value) for value in list_of_ints]
 [140373411256016, 140373411256088, 140373411256088, 140373411256088, 140373411256088]
-{% endhighlight %}
+```
 
 Not only did the value of the first entry change, it's location in memory changed also! This is because ints
 are (for some reason that I'm not aware of) immutable in Python. So any time you modify an integer in place,
@@ -164,14 +164,14 @@ performed in place. This is actually quite useful - copy operations are expensiv
 potentially very long and recursive list, this is not something you want to have to do every time you
 call .append().
 
-{% highlight python %}
+```python
 >>> list_of_lists = [[]] * 5
 >>> [id(sublist) for sublist in list_of_lists]
 [4411428592, 4411428592, 4411428592, 4411428592, 4411428592]
 >>> list_of_lists[0].append(500)
 >>> [id(sublist) for sublist in list_of_lists]
 [4411428592, 4411428592, 4411428592, 4411428592, 4411428592]
-{% endhighlight %}
+```
 
 So, the main thing to be aware of, is that any assignments in python simply copy the pointer of the value being
 assigned. If you then want to be able to manipulate the two variables separately, make sure that they are a 
@@ -185,7 +185,7 @@ means that any time during the execution of a python program a variable is assig
 this will point to the same place in memory. In contrast, for large numbers that haven't been pre-initialized, 
 each assignment will point to a new location in memory:
 
-{% highlight python %}
+```python
 >>> a = 150
 >>> b = 300
 >>> c = 150
@@ -198,11 +198,11 @@ each assignment will point to a new location in memory:
 140368092865608
 >>> id(d)
 140368092895144
-{% endhighlight %}
+```
 
 Isn't that something? 
 
-[^footnote]: Another interesting thing I learned when reading this is that there is no precision limit for integers in Python: you can store arbitrarily large values in an int without overflow. Just try it out: num = 2**600; print(num)
+[^footnote]: Another interesting thing I learned when reading this is that there is no precision limit for integers in Python: you can store arbitrarily large values in an int without overflow. Just try it out: `num = 2**600; print(num)`
 
 
 [pregel]: https://blog.acolyer.org/2015/05/26/pregel-a-system-for-large-scale-graph-processing/
