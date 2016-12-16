@@ -11,7 +11,7 @@ permalink: /about/
 * 2007-2014 Dipl (MSc) Electrical Engineering
 * 2007-2012 BSc Electrical Engineering
 
-[pdf version](/test.pdf)
+[pdf version](f.jwwwb.com/test.pdf)
 
 ## Interests
 * NLP
