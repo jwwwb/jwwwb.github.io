@@ -13,8 +13,8 @@ description: > # this means to ignore newlines until "baseurl:"
   machine learning, acoustics and life. For some reason I've decided I want 
   to share my thoughts with the world and/or nobody.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://jwwwb.github.io" # the base hostname & protocol for your site
-twitter_username: yames85
+url: "http://blog.jwwwb.com" # the base hostname & protocol for your site
+twitter_username: jwwwbr
 github_username:  jwwwb
 timezone: Europe/Madrid
 future: true
