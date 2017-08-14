@@ -39,7 +39,9 @@ sudo add-apt-repository ppa:graphics-drivers
 sudo apt-get update
 ```
 `Ctrl+alt+f2` to close X / get into shell
-```sudo service lightdm stop```
+```
+sudo service lightdm stop
+```
 Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
 ```
 blacklist nouveau
@@ -55,18 +57,26 @@ sudo reboot
 ## CUDA
 
 Installation from apt-get would get you version 7.5, instead we want 8.0. So go to https://developer.nvidia.com/cuda-downloads and select Linux -> x86_64 -> Ubuntu -> 16.04 -> runfile (local), and then download the base installer. Type the following command to install:
-```sudo sh cuda_8.0.61_375.26_linux.run```
+```
+sudo sh cuda_8.0.61_375.26_linux.run
+```
 and If your filename isn’t completing after the shell command, type:
-```complete -A file sh```
+```
+complete -A file sh
+```
 and then it should work.
 When asked if you should “Install NVIDIA Accelerated Graphics Driver for Linux-x86_64”, answer no, because you did this already. For all other prompts choose yes or the default location.
 If you get an error saying the
 https://devtalk.nvidia.com/default/topic/978812/installing-cuda-7-5-fails-on-ubuntu-14-0-4-5-with-error-driver-installation-is-unable-to-locate-the-kernel-source/
 You’ve done something wrong. Because the instructions I have arrived at now no longer give this error.
 And if you get the “Warning: Incomplete installation!” notification, just follow the instructions and do:
-```sudo sh cuda_8.0.61_375.26_linux.run -silent -driver```
+```
+sudo sh cuda_8.0.61_375.26_linux.run -silent -driver
+```
 Once this is done, type
-```nvcc --version```
+```
+nvcc --version
+```
 to verify that it worked. If it says currently not installed, you have to add it to your path first by adding these lines to your ~/.bashrc file:
 ```
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}
@@ -80,7 +90,9 @@ First go to
 https://developer.nvidia.com/rdp/cudnn-download
 And sign up at the developer portal in order to be able to download CuDNN. Once your account has been accepted, you can click “Download cuDNN v6.0 (April 27, 2017), for CUDA 8.0” and then select “cuDNN v6.0 Library for Linux”
 Extract your downloaded file using
-```Tar -xzf cudnn-8.0-linux-x64-v6.0.tgz```
+```
+tar -xzf cudnn-8.0-linux-x64-v6.0.tgz
+```
 Change directory into the extracted folder:
 ```
 cd cuda
@@ -107,6 +119,8 @@ sudo pip3 install tensorflow-gpu
 To test if it works, simply open the python interactive interpreter and try to import tensorflow:
 ```
 python3
+```
+```
 import tensorflow as tf
 a = tf.constant([1.0, 2.0], name=’a’)
 b = tf.constant([1.0, 2.0], name=’b’)
@@ -115,8 +129,9 @@ sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
 print(sess.run(c))
 ```
 if you get an error saying that libcudnn.so.5 is not found, this is because the tensorflow library is still looking for cudnn 5, even though you have cudnn 6. Simply symlinking the new file should resolve this:
-```sudo ln -s /usr/local/cuda-8.0/lib64/libcudnn.so.6 /usr/local/cuda-8.0/lib64/libcudnn.so.5```
-
+```
+sudo ln -s /usr/local/cuda-8.0/lib64/libcudnn.so.6 /usr/local/cuda-8.0/lib64/libcudnn.so.5
+```
 
 ## References
 
@@ -124,3 +139,4 @@ In no real order, the information I have is taken from at least the following pa
 
 http://www.linuxandubuntu.com/home/how-to-install-latest-nvidia-drivers-in-linux
 https://askubuntu.com/questions/799184/how-can-i-install-cuda-on-ubuntu-16-04
+https://askubuntu.com/questions/767269/how-can-i-install-cudnn-on-ubuntu-16-04
