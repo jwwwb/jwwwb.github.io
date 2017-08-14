@@ -1,0 +1,126 @@
+---
+layout: post
+title:  "Installing Ubuntu with CuDNN and Tensorflow from Scratch"
+date:   2017-08-14 20:27:44 +0200
+categories: general
+---
+
+Since I've found myself installing tensorflow with GPU support a few times recently, and looking at 7 different stackexchange posts in the process,
+I figured I would write up all the necessary steps in one place, since I could only find instructions for individual components.
+Although I initially just wrote this for myself, a colleague suggested I publish it since surely others can profit from the information.
+
+## Software to Install
+
+* Ubuntu 16.04 (clean installation)
+* nVidia drivers
+* CUDA 8.0
+* cuDNN 6.0
+* Python 3.5
+* Tensorflow 1.2
+
+## Ubuntu
+
+To make an Ubuntu boot disk on a mac, download the 16.04 LTS ubuntu .iso from the web. While this is downloading, open the Disk Manager application, select the usb drive you want to install to (not the partition on it) and click Erase. Select Fat32 and MBR, and format the drive.
+Next, install uNetbootin, and from there simply open your .iso, select the right disk (compare with the ID in Disk Manager) and go.
+Eject the USB stick and insert it into your Tensorflow machine, and boot from the drive and install.
+Make sure to disable secure boot in your BIOS menu, otherwise this will cause problems with the nvidia driver installation.
+Once it’s up and running, always good practice to:
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
+
+## nVidia Drivers
+
+Make sure there are no previous nvidia drivers installed, add the repository, and update:
+```
+sudo apt-get purge nvidia*
+sudo add-apt-repository ppa:graphics-drivers
+sudo apt-get update
+```
+`Ctrl+alt+f2` to close X / get into shell
+```sudo service lightdm stop```
+Create a file at `/etc/modprobe.d/blacklist-nouveau.conf` with the following contents:
+```
+blacklist nouveau
+options nouveau modeset=0
+```
+Type the following commands to apply changes, install and reboot:
+```
+sudo update-initramfs -u
+sudo apt-get install nvidia-375
+sudo reboot
+```
+
+## CUDA
+
+Installation from apt-get would get you version 7.5, instead we want 8.0. So go to https://developer.nvidia.com/cuda-downloads and select Linux -> x86_64 -> Ubuntu -> 16.04 -> runfile (local), and then download the base installer. Type the following command to install:
+```sudo sh cuda_8.0.61_375.26_linux.run```
+and If your filename isn’t completing after the shell command, type:
+```complete -A file sh```
+and then it should work.
+When asked if you should “Install NVIDIA Accelerated Graphics Driver for Linux-x86_64”, answer no, because you did this already. For all other prompts choose yes or the default location.
+If you get an error saying the
+https://devtalk.nvidia.com/default/topic/978812/installing-cuda-7-5-fails-on-ubuntu-14-0-4-5-with-error-driver-installation-is-unable-to-locate-the-kernel-source/
+You’ve done something wrong. Because the instructions I have arrived at now no longer give this error.
+And if you get the “Warning: Incomplete installation!” notification, just follow the instructions and do:
+```sudo sh cuda_8.0.61_375.26_linux.run -silent -driver```
+Once this is done, type
+```nvcc --version```
+to verify that it worked. If it says currently not installed, you have to add it to your path first by adding these lines to your ~/.bashrc file:
+```
+export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+```
+and start a new shell session for the changes to take effect.
+
+## CuDNN
+
+First go to
+https://developer.nvidia.com/rdp/cudnn-download
+And sign up at the developer portal in order to be able to download CuDNN. Once your account has been accepted, you can click “Download cuDNN v6.0 (April 27, 2017), for CUDA 8.0” and then select “cuDNN v6.0 Library for Linux”
+Extract your downloaded file using
+```Tar -xzf cudnn-8.0-linux-x64-v6.0.tgz```
+Change directory into the extracted folder:
+```
+cd cuda
+sudo cp -P include/cudnn.h /usr/local/cuda/include/
+sudo cp -P lib64/libcudnn* /usr/local/cuda/lib64/
+sudo chmod a+r /usr/local/cuda/lib64/libcudnn*
+```
+
+
+## Python 3
+
+Python 3.5 comes pre-installed on Ubuntu. Although I initially included instructions on how to install Python 3.6 and make
+it the default python, I found that that caused more trouble than it was worth, so I'm just sticking to 3.5 for now.
+
+## Tensorflow
+
+First install and upgrade pip, then install numpy and tensorflow:
+```
+sudo apt-get install python3-pip
+sudo pip3 install —upgrade pip
+sudo pip3 install numpy
+sudo pip3 install tensorflow-gpu
+```
+To test if it works, simply open the python interactive interpreter and try to import tensorflow:
+```
+python3
+import tensorflow as tf
+a = tf.constant([1.0, 2.0], name=’a’)
+b = tf.constant([1.0, 2.0], name=’b’)
+c = tf.multiply(a, b, name=’c’)
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+print(sess.run(c))
+```
+if you get an error saying that libcudnn.so.5 is not found, this is because the tensorflow library is still looking for cudnn 5, even though you have cudnn 6. Simply symlinking the new file should resolve this:
+```sudo ln -s /usr/local/cuda-8.0/lib64/libcudnn.so.6 /usr/local/cuda-8.0/lib64/libcudnn.so.5```
+
+
+## References
+
+In no real order, the information I have is taken from at least the following pages, maybe more that I can no longer find.
+
+http://www.linuxandubuntu.com/home/how-to-install-latest-nvidia-drivers-in-linux
+https://askubuntu.com/questions/799184/how-can-i-install-cuda-on-ubuntu-16-04
