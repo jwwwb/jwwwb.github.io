@@ -137,6 +137,6 @@ sudo ln -s /usr/local/cuda-8.0/lib64/libcudnn.so.6 /usr/local/cuda-8.0/lib64/lib
 
 In no real order, the information I have is taken from at least the following pages, maybe more that I can no longer find.
 
-http://www.linuxandubuntu.com/home/how-to-install-latest-nvidia-drivers-in-linux
-https://askubuntu.com/questions/799184/how-can-i-install-cuda-on-ubuntu-16-04
-https://askubuntu.com/questions/767269/how-can-i-install-cudnn-on-ubuntu-16-04
+* <http://www.linuxandubuntu.com/home/how-to-install-latest-nvidia-drivers-in-linux>
+* <https://askubuntu.com/questions/799184/how-can-i-install-cuda-on-ubuntu-16-04>
+* <https://askubuntu.com/questions/767269/how-can-i-install-cudnn-on-ubuntu-16-04>
