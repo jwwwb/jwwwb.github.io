@@ -112,7 +112,7 @@ it the default python, I found that that caused more trouble than it was worth, 
 First install and upgrade pip, then install numpy and tensorflow:
 ```
 sudo apt-get install python3-pip
-sudo pip3 install —upgrade pip
+sudo pip3 install --upgrade pip
 sudo pip3 install numpy
 sudo pip3 install tensorflow-gpu
 ```
