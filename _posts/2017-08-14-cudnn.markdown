@@ -79,7 +79,7 @@ nvcc --version
 ```
 to verify that it worked. If it says currently not installed, you have to add it to your path first by adding these lines to your ~/.bashrc file:
 ```
-export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}
+export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ```
 and start a new shell session for the changes to take effect.
