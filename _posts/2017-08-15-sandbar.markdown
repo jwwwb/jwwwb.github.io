@@ -1,8 +1,41 @@
 ---
 layout: post
-title:  "Sandbar - a C++ Music Player for *nix."
+title:  "Sandbar - a C++ Music Player for \*nix."
 date:   2017-08-15 19:07:44 +0100
 categories: general
 ---
+Somehow I started writing this post about my music player but never finished it, 
+so here it goes, with some delay.
+
+I mostly switched from Windows to Unix-like operating systems about a decade  ago,
+but I've always been discontent with the music players available. The obvious choice
+on MacOS would of course be iTunes, but alongside a whole host of other issues,
+its inability to playback FLAC files disqualifies it right from the bat. On Ubuntu
+I remember trying Amarok back in the mid 00s, and also running Winamp or Foobar2k
+in WINE, but a lot of things like hotkeys and window sizing didn't work properly
+through WINE. I realize music players for linux have come a long way, with
+apps like Clementine being immensely powerful and customizable, but I've gotten
+used to certain idosynchracies that I wouldn't want to miss. Besides, who doesn't
+love a challenge, and I thought making my own player gives me the highest level
+of customization.
+
+Thus emerged what I am tentatively calling sandbar, after a word heard in a song
+lyric that reminds me of nicer climates. C was one of the first programming
+languages I learned, back in 2007, but I never really came close to mastering it.
+C++ had been something I only ever dealt with in passing, but given their
+importance I figured this would be a perfect project to get to know the languages
+much better, as well as figure out their differences (beyond just Objects vs. no
+Objects). Having used PyQt4 for a work project some time back, I was at least
+vaguely familiar with the Qt framework, so I decided to go with the Qt5 library
+to make GUI and threading a lot easier for me. Although I'm not targetting the
+application for Windows, the cross-platform nature of Qt already takes a load off
+my shoulders in terms of making it run on MacOS and Linux.
+
+Some of my requirements for the project are tabbed playlists (in my opinion a
+comparable innovation to tabs in browser windows, and one that I really don't
+want to be without), a playback queue separate from the actual playlists (which
+I first encountered on Winamp2, but services like Spotify also include these days),
+and good network support (both control and playback).
+
 
 

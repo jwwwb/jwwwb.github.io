@@ -21,23 +21,23 @@ permalink: /about/
 * Languages
 * Machine learning
 
-## Programming 
+## Programming
 * **years of experience** Matlab, Python
-* **months of experience** C/C++, Java, PHP
-* **days of experience** Javascript, Objective C, OpenCL, Swift
+* **months of experience** C/C++, Java, PHP, Swift
+* **days of experience** Javascript, Objective C, OpenCL
 
 ## Languages
-* **decades of experience** English, German 
-* **years of experience** Portuguese, Spanish 
+* **decades of experience** English, German
+* **years of experience** Portuguese, Spanish
 * **months of experience** Catalan, Dutch, Latin, Russian
 
 ## Projects
 * **CheshireBot** Designing a chess engine for some AI experimentations at
 {% include icon-github.html username="jwwwb" %} /
 [CheshireBot](https://github.com/jwwwb/CheshireBot)
-* **The Notorious N.L.P.** Experimenting with NLP using Biggie lyrics at
+* **Sandbar** Making an mp3/flac player for MacOS and Linux using C++/Qt5 at
 {% include icon-github.html username="jwwwb" %} /
-[the-notorious-nlp](https://github.com/jwwwb/the-notorious-nlp)
+[sandbar](https://github.com/jwwwb/sandbar)
 * **Vowelcoder** Generating human vowel sounds
 {% include icon-github.html username="jwwwb" %} /
 [vowelcoder](https://github.com/jwwwb/vowelcoder)

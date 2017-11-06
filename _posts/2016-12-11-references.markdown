@@ -25,7 +25,7 @@ how global results emerge from small scale multi-agent type behavior. You write 
 naturally I did it in Python, with a bit of Qt5 for the visualization. Since the real version uses
 message passing for communication between workers, and my replica wasn't going to be using any real 
 networking, I just used empty lists as buffers to represent the network buffer. Little did I know, this was
-to be the beginning of an hour-long debugging session. 
+to be the beginning of an hour-long debugging session.
 
 To cut to the chase, the problem was that all of my buffer lists were the same list. So every entry I
 tried to add to one, I actually added to all of them. Why this initially worked anyway, but then started causing errors, 

@@ -9,9 +9,9 @@
 title: jwwwb
 email: james@jwwwb.com
 description: > # this means to ignore newlines until "baseurl:"
-  jwwwb. Home to my projects and ruminations on natural language processing, 
-  machine learning, acoustics and life. For some reason I've decided I want 
-  to share my thoughts with the world and/or nobody.
+  jwwwb. Home to my projects and ruminations on natural language processing,
+  machine learning, acoustics, programming and life. May be updated more
+  frequently in the future.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://blog.jwwwb.com" # the base hostname & protocol for your site
 twitter_username: jwwwbr
