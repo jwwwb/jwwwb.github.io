@@ -35,7 +35,7 @@ Some of my requirements for the project are tabbed playlists (in my opinion a
 comparable innovation to tabs in browser windows, and one that I really don't
 want to be without), a playback queue separate from the actual playlists (which
 I first encountered on Winamp2, but services like Spotify also include these days),
-and good network support (both control and playback).
+and good network support (both control and playback).*
 
 
 
