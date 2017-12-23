@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Variational Auto-Encoders and the Reparameterization Trick"
-date:   2017-12-21 23:27:44 +0200
+date:   2017-12-23 15:20:20 +0200
 categories: AI
 ---
 
